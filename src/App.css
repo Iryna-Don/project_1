@@ -1,38 +1,31 @@
-.App {
-  text-align: center;
+.app-wrapper {
+  margin: 0;
+  display: grid;
+  grid-template-areas:
+    'header header'
+    'nav content';
+  grid-template-rows: 10vh 89vh;
+  grid-template-columns: 10vw 89vw;
+  grid-gap: 1vw;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header {
+  /* все grid-area: псевдоним для элемента с указанным классом */
+  grid-area: header;
+  background-color: greenyellow;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.header img {
+  height: 8vh;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.nav {
+  grid-area: nav;
+  background-color: green;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.content {
+  grid-area: content;
+  background-color: lightgreen;
 }
