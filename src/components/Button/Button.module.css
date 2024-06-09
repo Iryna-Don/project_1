@@ -1,0 +1,18 @@
+.btn {
+    border: 1px solid green;
+    background-color: green;
+    border-radius: 15px;
+    color: white;
+    margin: 0.5vw;
+    padding: 0.5vw;
+}
+
+.btn:hover {
+    border: gold;
+    background-color: gold;
+    color: black;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+
+}

@@ -1,0 +1,18 @@
+.dialogUserActive {
+	text-decoration: none;
+	font-size: 1.6vw;
+	text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+	margin-left: 1vw;
+}
+
+.dialogUser {
+	text-decoration: none;
+	font-size: 1.4vw;
+	margin-left: 1vw;
+}
+
+.dialogUser:hover {
+	columns: green;
+	font-size: 1.6vw;
+	text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,10 @@
+.header {
+    /* все grid-area: псевдоним для элемента с указанным классом */
+    grid-area: header;
+    background-color: gold;
+  }
+  
+  .header img {
+    height: 8vh;
+    margin: 1vw;
+  }

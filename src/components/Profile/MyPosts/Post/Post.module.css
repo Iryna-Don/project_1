@@ -1,0 +1,14 @@
+.itemPost {
+  color: royalblue;
+  font-size: 1.4vw;
+}
+
+.userAvatar{
+  width: 5vw;
+  margin-left: 1vw;
+}
+
+hr{
+  height: 1vw;
+  background-color: white;
+}
