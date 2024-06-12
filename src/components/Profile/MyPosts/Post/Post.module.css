@@ -4,6 +4,7 @@
 }
 
 .userAvatar{
+  border-radius: 50%;
   width: 5vw;
   margin-left: 1vw;
 }

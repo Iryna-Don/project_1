@@ -11,26 +11,26 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 
-const App = () => {
+const App = ({ allData }) => {
   return (
     <BrowserRouter>
-    {/* <Router> */}
+      {/* <Router> */}
       <div className='app-wrapper'>
         <Header />
-        <Navbar />
+        <Navbar allData={allData}/>
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path='/Profile' element={<Profile/>} />
+            <Route path='/Profile' element={<Profile allData={allData} />} />
             {/* <Route path='/Profile' Component={Profile} /> */}
-            <Route path='/Dialogs' element={<Dialogs/>} />
-            <Route path='/News' element={<News/>} />
-            <Route path="/Music" element={<Music/>} />
-            <Route path="/Settings" element={<Settings/>} />
-            <Route path="/Dialogs/*" element={<Dialogs />} /> 
+            <Route path='/Dialogs' element={<Dialogs allData={allData} />} />
+            <Route path='/News' element={<News />} />
+            <Route path='/Music' element={<Music />} />
+            <Route path='/Settings' element={<Settings />} />
+            <Route path='/Dialogs/*' element={<Dialogs allData={allData} />} />
           </Routes>
         </div>
       </div>
-    {/* </Router> */}
+      {/* </Router> */}
     </BrowserRouter>
   );
 };

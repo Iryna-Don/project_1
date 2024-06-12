@@ -2,15 +2,11 @@ import React from "react";
 import classes from "./Post.module.css";
 import Button from "../../../Button/Button";
 
-const Post = ({ post, likes }) => {
+const Post = ({ postId, textOfPost, likes, avatar }) => {
   return (
     <div className={classes.itemPost}>
-      <img
-        className={classes.userAvatar}
-        src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROFlkGkHYYGke55G_VE4xL6fJU3jb_xAFqGQ&s'
-        alt='ara parrot'
-      />
-      {post}
+      <img className={classes.userAvatar} src={avatar} alt='some description' />
+      {postId} {textOfPost}
       <br />
       <Button title={"Like " + likes}></Button>
       <Button title='Dislike'></Button>

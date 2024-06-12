@@ -5,13 +5,15 @@ import classes from "./DialogUser.module.css";
 const setActive = ({ isActive }) =>
   isActive ? classes.dialogUserActive : classes.dialogUser;
 
-const Dialog = ({ id, userName }) => {
+const DialogUser = ({ id, userName, avatar }) => {
   let path = "/Dialogs/" + id;
-  return (
-    <NavLink className={setActive} to={path}>
+  return (<div>
+     <NavLink className={setActive} to={path}>
+     <img src={avatar} className={classes.userAvatar}/>
       {userName}
     </NavLink>
+    </div>
   );
 };
 
-export default Dialog;
+export default DialogUser;

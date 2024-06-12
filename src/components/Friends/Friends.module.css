@@ -1,0 +1,13 @@
+.title {    margin-left: 1vw;
+
+    margin-top: 5vh;
+    margin-bottom: 2vh;
+    color: gold;
+    font-size: 1.6vw;
+    text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.6);
+}
+
+.friends{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
