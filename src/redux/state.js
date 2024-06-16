@@ -1,23 +1,34 @@
+import { rerenderEntireTree } from "../render";
+
 let state = {
   profile: {
+    newPostText: "",
+
     postsData: [
       { postId: 1, userId: 1, textOfPost: "bla-bla-bla", likes: 4 },
       { postId: 2, userId: 2, textOfPost: "It`s my life", likes: 22 },
       { postId: 3, userId: 3, textOfPost: "Why do you cry?", likes: 890 },
       { postId: 4, userId: 4, textOfPost: "Business and I", likes: 12 },
-      { postId: 5, userId: 5, textOfPost: "All about your interests", likes: 28 },
-    ],
+      {
+        postId: 5,
+        userId: 5,
+        textOfPost: "All about your interests",
+        likes: 28,
+      },
+    ].reverse(),
+    // перевернула, чтобы по умолчанию массив вставал по id в обратном порядке (от раниих к поздним)
   },
 
   dialogs: {
     messageDialogsData: [
       { id: 1, userId: 1, message: "Hi!" },
       { id: 2, userId: 2, message: "How are you?" },
-      { id: 3, userId: 1, message: "Not so bad" },
-      { id: 4, userId: 1, message: "And?" },
-      { id: 5, userId: 3, message: "What?" },
-      { id: 6, userId: 4, message: "Mom, can I have a dog?" },
-      { id: 7, userId: 5, message: "I`ll do it by myself..." },
+      { id: 3, userId: 3, message: "Not so bad" },
+      { id: 4, userId: 4, message: "And?" },
+      { id: 8, userId: 4, message: "What do you want?" },
+      { id: 5, userId: 5, message: "Ahhh?" },
+      { id: 6, userId: 6, message: "Mom, can I have a dog?" },
+      { id: 7, userId: 2, message: "I`ll do it by myself..." },
     ],
     usersDialogsData: [
       {
@@ -44,7 +55,7 @@ let state = {
       {
         userId: 4,
         userName: "Vira",
-        friendStatus: false,
+        friendStatus: true,
         avatar:
           "https://99px.ru/sstorage/1/2024/05/image_12105241118153001870.jpg",
       },
@@ -58,7 +69,7 @@ let state = {
       {
         userId: 6,
         userName: "Galyna",
-        friendStatus: false,
+        friendStatus: true,
         avatar:
           "https://99px.ru/sstorage/1/2024/05/image_12105241108231030018.jpg",
       },
@@ -67,3 +78,27 @@ let state = {
 };
 
 export default state;
+
+export let addPost = () => {
+  let newPost = {
+    postId: state.profile.postsData.length + 1,
+    //userId по умолчанию должен быть залогиненого user-a
+    userId: 1,
+    textOfPost: state.profile.newPostText,
+    likes: 0,
+  };
+  // добавление через unshift потому, что сам массив в реверсе, если бы не был, добавляла бы в конец, а не в начало массива push-ем
+  state.profile.postsData.unshift(newPost);
+  clearTextarea();
+  rerenderEntireTree(state);
+};
+
+export let changePostText = postText => {
+  state.profile.newPostText = postText;
+  rerenderEntireTree(state);
+};
+
+export let clearTextarea = ()=>{
+  state.profile.newPostText = "";
+  rerenderEntireTree(state);
+}

@@ -7,11 +7,12 @@ const setActive = ({ isActive }) =>
 
 const DialogUser = ({ id, userName, avatar }) => {
   let path = "/Dialogs/" + id;
-  return (<div>
-     <NavLink className={setActive} to={path}>
-     <img src={avatar} className={classes.userAvatar}/>
-      {userName}
-    </NavLink>
+  return (
+    <div>
+      <NavLink className={setActive} to={path}>
+        <img src={avatar} className={classes.userAvatar} />
+        {userName}
+      </NavLink>
     </div>
   );
 };

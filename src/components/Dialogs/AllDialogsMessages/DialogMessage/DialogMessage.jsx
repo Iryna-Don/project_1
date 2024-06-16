@@ -2,18 +2,18 @@ import React from "react";
 import classes from "./DialogMessage.module.css";
 
 // =================================================================================================
-// формирую массив с 2-мя стилями отрисовки сообщений, через props получаю данные, поменялся ли userId.
+// формирую массив с 2-мя стилями отрисовки сообщений (вынесен в state.js), через props получаю данные (dataStyles), поменялся ли userId.
 // При изменении отрисовую с др.стороны, методом переворота данных в массиве .reverse().
 // Этот метод изменяет сам массив данных, поэтому удерживает предыдущее использованное значение на случай повторнения userId.
-
+// const stylesFormats = [classes.firstFormat, classes.secondFormat];
+// =================================================================================================
 let stylesFormats = [classes.firstFormat, classes.secondFormat];
 
-function reverseStylesFormats(array) {
-  return array.reverse();
-}
-// =================================================================================================
-
 const DialogMessage = ({ message, avatar, repeat }) => {
+  function reverseStylesFormats(array) {
+    return array.reverse();
+  }
+
   return (
     <>
       <div

@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import Button from "../../Button/Button";
 
 //allData = state в файле state.js
 
-const MyPosts = ({ allData }) => {
+const MyPosts = ({ allData, addPost, changePostText, clearTextarea }) => {
   let arrayPosts = allData.profile.postsData.map(
     ({ postId, userId, textOfPost, likes }) => (
       <Post
@@ -14,20 +13,43 @@ const MyPosts = ({ allData }) => {
         textOfPost={textOfPost}
         likes={likes}
         avatar={
-          allData.dialogs.usersDialogsData.find(
-            user => userId === user.userId
-          ).avatar
+          allData.dialogs.usersDialogsData.find(user => userId === user.userId)
+            .avatar
         }
       ></Post>
     )
   );
 
+  let textarea = React.createRef();
+
+  const addPostToBLL = () => {
+    addPost();
+  };
+
+  // ===============================================================================================================================
+  // const [post, setPost] = useState("");
+  // const addPostToBLL = () => {
+  //   let postMessage = textarea.current.value;
+  //   setPost(postMessage);
+  //   addPost(postMessage);
+  //   textarea.current.value = "";
+  // };
+  // ===============================================================================================================================
+
+
+  const changeText = ()=>{
+    let postText = textarea.current.value;
+    changePostText(postText);
+    };
+
+
+
   return (
     <div>
-      <textarea></textarea>
+      <textarea ref={textarea} value={allData.profile.newPostText} placeholder="Enter New Post" onChange={changeText}/>
       <br />
-      <Button title={"Add post"}></Button>
-      <Button title={"Clear all"}></Button>
+      <button onClick={addPostToBLL}>Add post</button>
+      <button onClick={clearTextarea}>Clear all</button>
       <h3>My posts</h3>
       <h3>New posts</h3>
       <div className={classes.posts}>{arrayPosts}</div>
