@@ -11,7 +11,7 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 
-const App = ({ allData, addPost, changePostText, clearTextarea}) => {
+const App = ({ allData, addPost, changePostText, clearTextarea, addDialogMessage, changeDialogMessage, clearDialogTextarea}) => {
   return (
     <>
       {/* <Router> */}
@@ -22,7 +22,7 @@ const App = ({ allData, addPost, changePostText, clearTextarea}) => {
           <Routes>
             <Route path='/Profile' element={<Profile allData={allData} addPost={addPost} changePostText={changePostText} clearTextarea={clearTextarea}/>} />
             {/* <Route path='/Profile' Component={Profile} /> */}
-            <Route path='/Dialogs' element={<Dialogs allData={allData} />} />
+            <Route path='/Dialogs' element={<Dialogs allData={allData} addDialogMessage={addDialogMessage} changeDialogMessage={changeDialogMessage} clearDialogTextarea={clearDialogTextarea}/>} />
             <Route path='/News' element={<News />} />
             <Route path='/Music' element={<Music />} />
             <Route path='/Settings' element={<Settings />} />

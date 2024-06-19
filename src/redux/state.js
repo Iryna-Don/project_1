@@ -1,4 +1,10 @@
-import { rerenderEntireTree } from "../render";
+let rerenderEntireTree = () => {
+  console.log"state changed");
+};
+
+export const subscriber = observer => {
+  rerenderEntireTree = observer;
+};
 
 let state = {
   profile: {
@@ -20,6 +26,8 @@ let state = {
   },
 
   dialogs: {
+    newDialogMessage: "",
+
     messageDialogsData: [
       { id: 1, userId: 1, message: "Hi!" },
       { id: 2, userId: 2, message: "How are you?" },
@@ -76,10 +84,10 @@ let state = {
     ],
   },
 };
-
 export default state;
+// ==============================================================POSTS==============================================================
 
-export let addPost = () => {
+export const addPost = () => {
   let newPost = {
     postId: state.profile.postsData.length + 1,
     //userId по умолчанию должен быть залогиненого user-a
@@ -90,15 +98,41 @@ export let addPost = () => {
   // добавление через unshift потому, что сам массив в реверсе, если бы не был, добавляла бы в конец, а не в начало массива push-ем
   state.profile.postsData.unshift(newPost);
   clearTextarea();
-  rerenderEntireTree(state);
+  rerenderEntireTree();
 };
 
-export let changePostText = postText => {
+export const changePostText = postText => {
   state.profile.newPostText = postText;
-  rerenderEntireTree(state);
+  rerenderEntireTree();
 };
 
-export let clearTextarea = ()=>{
+export const clearTextarea = () => {
   state.profile.newPostText = "";
-  rerenderEntireTree(state);
-}
+  rerenderEntireTree();
+};
+
+// ==============================================================DIALOGS==============================================================
+export const addDialogMessage = () => {
+  let newMessage = {
+    id: state.dialogs.messageDialogsData.length + 1,
+        //userId по умолчанию должен быть залогиненого user-a
+    userId: 1,
+    message: state.dialogs.newDialogMessage,
+  };
+  state.dialogs.messageDialogsData.push(newMessage);
+  clearDialogTextarea();
+  rerenderEntireTree();
+};
+
+export const changeDialogMessage = (postDialogMessage) => {
+  state.dialogs.newDialogMessage = postDialogMessage;
+  rerenderEntireTree();
+};
+
+export const clearDialogTextarea = () => {
+  state.dialogs.newDialogMessage = "";
+  rerenderEntireTree();
+};
+
+
+// =============================================================================================================================================

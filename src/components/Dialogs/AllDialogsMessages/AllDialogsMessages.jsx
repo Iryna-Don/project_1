@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
+import React from "react";
 import classes from "./AllDialogsMessages.module.css";
 import DialogMessage from "./DialogMessage/DialogMessage";
 
-const AllDialogsMessages = ({ allData }) => {
+const AllDialogsMessages = ({ allData, addDialogMessage, changeDialogMessage, clearDialogTextarea }) => {
   let arrayMessagesDialogData = allData.dialogs.messageDialogsData.map(
     (message, index) => {
       // =================================================================================================
@@ -46,19 +47,22 @@ const AllDialogsMessages = ({ allData }) => {
   );
 
   let textarea = React.createRef();
-  const [text, setText] = useState("");
+  // const [text, setText] = useState("");
+  // const addMessage = ()=>setText(textarea.current.value);
+  // const clearTextarea = ()=> textarea.current.value = '';
 
-  const addMessage = ()=>setText(textarea.current.value);
-
-  const clearTextarea = ()=> textarea.current.value = '';
+  const changeMessage = ()=>{
+    let postDialogMessage = textarea.current.value;
+    changeDialogMessage(postDialogMessage);
+    };
 
   return (
     <>
       <div className={classes.allDialogsMessages}>
         {arrayMessagesDialogData}
-        <textarea ref={textarea}></textarea>
-        <button onClick={addMessage}>Add message</button>
-        <button onClick={clearTextarea}>Clear</button>
+        <textarea ref={textarea} onChange={changeMessage} value={allData.dialogs.newDialogMessage} placeholder="Add A Message"></textarea>
+        <button onClick={addDialogMessage}>Add message</button>
+        <button onClick={clearDialogTextarea}>Clear</button>
 
       </div>
     </>

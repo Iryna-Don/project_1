@@ -1,9 +1,40 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
 import "./index.css";
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
-import { rerenderEntireTree } from "./render";
-import state from "./redux/state";
+import state, {
+  addPost,
+  changePostText,
+  clearTextarea,
+  addDialogMessage,
+  changeDialogMessage,
+  clearDialogTextarea,
+  subscriber} from "./redux/state";
 
-rerenderEntireTree(state);
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+const rerenderTree = () => {
+  root.render(
+    <BrowserRouter>
+      {/* <React.StrictMode> */}
+      <App
+        allData={state}
+        addPost={addPost}
+        changePostText={changePostText}
+        clearTextarea={clearTextarea}
+        addDialogMessage={addDialogMessage}
+        changeDialogMessage={changeDialogMessage}
+        clearDialogTextarea={clearDialogTextarea}
+      />
+      {/* </React.StrictMode> */}
+    </BrowserRouter>
+  );
+};
+rerenderTree();
+
+subscriber(rerenderTree);
 
 // ============================================================================old version==============================================================
 // const root = ReactDOM.createRoot(document.getElementById("root"));
