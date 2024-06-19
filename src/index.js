@@ -4,14 +4,7 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
-import state, {
-  addPost,
-  changePostText,
-  clearTextarea,
-  addDialogMessage,
-  changeDialogMessage,
-  clearDialogTextarea,
-  subscriber} from "./redux/state";
+import store from "./redux/state";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -20,13 +13,7 @@ const rerenderTree = () => {
     <BrowserRouter>
       {/* <React.StrictMode> */}
       <App
-        allData={state}
-        addPost={addPost}
-        changePostText={changePostText}
-        clearTextarea={clearTextarea}
-        addDialogMessage={addDialogMessage}
-        changeDialogMessage={changeDialogMessage}
-        clearDialogTextarea={clearDialogTextarea}
+        store={store}
       />
       {/* </React.StrictMode> */}
     </BrowserRouter>
@@ -34,7 +21,7 @@ const rerenderTree = () => {
 };
 rerenderTree();
 
-subscriber(rerenderTree);
+store.subscriber(rerenderTree);
 
 // ============================================================================old version==============================================================
 // const root = ReactDOM.createRoot(document.getElementById("root"));

@@ -3,8 +3,8 @@ import React from "react";
 import classes from "./AllDialogsMessages.module.css";
 import DialogMessage from "./DialogMessage/DialogMessage";
 
-const AllDialogsMessages = ({ allData, addDialogMessage, changeDialogMessage, clearDialogTextarea }) => {
-  let arrayMessagesDialogData = allData.dialogs.messageDialogsData.map(
+const AllDialogsMessages = ({ store }) => {
+  let arrayMessagesDialogData = store.state.dialogs.messageDialogsData.map(
     (message, index) => {
       // =================================================================================================
       // функция проверяет, повторяется ли userId у соседних сообщений, если да, возвращает true, если нет - false;
@@ -14,17 +14,17 @@ const AllDialogsMessages = ({ allData, addDialogMessage, changeDialogMessage, cl
       function repeatOrNot(ind) {
         for (
           let i = ind;
-          i <= allData.dialogs.messageDialogsData.length - 1;
+          i <= store.state.dialogs.messageDialogsData.length - 1;
           i++
         ) {
           if (i > 0) {
-            return allData.dialogs.messageDialogsData[i].userId ===
-              allData.dialogs.messageDialogsData[i - 1].userId
+            return store.state.dialogs.messageDialogsData[i].userId ===
+              store.state.dialogs.messageDialogsData[i - 1].userId
               ? true
               : false;
           } else if (i === 0) {
-            return allData.dialogs.messageDialogsData[i].userId ===
-              allData.dialogs.messageDialogsData[i + 1].userId
+            return store.state.dialogs.messageDialogsData[i].userId ===
+              store.state.dialogs.messageDialogsData[i + 1].userId
               ? true
               : false;
           }
@@ -36,7 +36,7 @@ const AllDialogsMessages = ({ allData, addDialogMessage, changeDialogMessage, cl
           key={message.id}
           message={message.message}
           avatar={
-            allData.dialogs.usersDialogsData.find(
+            store.state.dialogs.usersDialogsData.find(
               user => message.userId === user.userId
             ).avatar
           }
@@ -53,16 +53,16 @@ const AllDialogsMessages = ({ allData, addDialogMessage, changeDialogMessage, cl
 
   const changeMessage = ()=>{
     let postDialogMessage = textarea.current.value;
-    changeDialogMessage(postDialogMessage);
+    store.changeDialogMessage(postDialogMessage);
     };
 
   return (
     <>
       <div className={classes.allDialogsMessages}>
         {arrayMessagesDialogData}
-        <textarea ref={textarea} onChange={changeMessage} value={allData.dialogs.newDialogMessage} placeholder="Add A Message"></textarea>
-        <button onClick={addDialogMessage}>Add message</button>
-        <button onClick={clearDialogTextarea}>Clear</button>
+        <textarea ref={textarea} onChange={changeMessage} value={store.state.dialogs.newDialogMessage} placeholder="Add A Message"></textarea>
+        <button onClick={store.addDialogMessage}>Add message</button>
+        <button onClick={store.clearDialogTextarea}>Clear</button>
 
       </div>
     </>

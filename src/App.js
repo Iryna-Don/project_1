@@ -11,22 +11,22 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 
-const App = ({ allData, addPost, changePostText, clearTextarea, addDialogMessage, changeDialogMessage, clearDialogTextarea}) => {
+const App = ({ store }) => {
   return (
     <>
       {/* <Router> */}
       <div className='app-wrapper'>
         <Header />
-        <Navbar allData={allData} />
+        <Navbar store={store} />
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path='/Profile' element={<Profile allData={allData} addPost={addPost} changePostText={changePostText} clearTextarea={clearTextarea}/>} />
+            <Route path='/Profile' element={<Profile store={store}/>} />
             {/* <Route path='/Profile' Component={Profile} /> */}
-            <Route path='/Dialogs' element={<Dialogs allData={allData} addDialogMessage={addDialogMessage} changeDialogMessage={changeDialogMessage} clearDialogTextarea={clearDialogTextarea}/>} />
+            <Route path='/Dialogs' element={<Dialogs store = {store}/>} />
             <Route path='/News' element={<News />} />
             <Route path='/Music' element={<Music />} />
             <Route path='/Settings' element={<Settings />} />
-            <Route path='/Dialogs/*' element={<Dialogs allData={allData} />} />
+            <Route path='/Dialogs/*' element={<Dialogs store = {store}/>} />
           </Routes>
         </div>
       </div>

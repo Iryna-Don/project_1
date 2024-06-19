@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Friend from "./Friend/Friend";
 import classes from "./Friends.module.css";
-const Friends = ({ allData }) => {
+const Friends = ({ store }) => {
   const [status, setStatus] = useState(true);
-  let friendsArray = allData.dialogs.usersDialogsData.filter(
+  let friendsArray = store.state.dialogs.usersDialogsData.filter(
     user => user.friendStatus === status
   );
   let mapFriendsArray = friendsArray.map(({ userId, userName, avatar }) => (

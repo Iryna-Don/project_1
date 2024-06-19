@@ -3,11 +3,11 @@ import React from "react";
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-const Profile = ({allData, addPost, changePostText, clearTextarea}) => {
+const Profile = ({store}) => {
   return (
     <>
       <ProfileInfo />
-      <MyPosts allData={allData} addPost={addPost} changePostText={changePostText} clearTextarea={clearTextarea}/>
+      <MyPosts store={store}/>
     </>
   );
 };

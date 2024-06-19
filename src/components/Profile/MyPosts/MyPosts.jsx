@@ -4,8 +4,8 @@ import Post from "./Post/Post";
 
 //allData = state в файле state.js
 
-const MyPosts = ({ allData, addPost, changePostText, clearTextarea }) => {
-  let arrayPosts = allData.profile.postsData.map(
+const MyPosts = ({ store }) => {
+  let arrayPosts = store.state.profile.postsData.map(
     ({ postId, userId, textOfPost, likes }) => (
       <Post
         key={postId}
@@ -13,7 +13,7 @@ const MyPosts = ({ allData, addPost, changePostText, clearTextarea }) => {
         textOfPost={textOfPost}
         likes={likes}
         avatar={
-          allData.dialogs.usersDialogsData.find(user => userId === user.userId)
+          store.state.dialogs.usersDialogsData.find(user => userId === user.userId)
             .avatar
         }
       ></Post>
@@ -23,7 +23,7 @@ const MyPosts = ({ allData, addPost, changePostText, clearTextarea }) => {
   let textarea = React.createRef();
 
   const addPostToBLL = () => {
-    addPost();
+    store.addPost();
   };
 
   // ===============================================================================================================================
@@ -39,17 +39,17 @@ const MyPosts = ({ allData, addPost, changePostText, clearTextarea }) => {
 
   const changeText = ()=>{
     let postText = textarea.current.value;
-    changePostText(postText);
+    store.changePostText(postText);
     };
 
 
 
   return (
     <div>
-      <textarea ref={textarea} value={allData.profile.newPostText} placeholder="Enter New Post" onChange={changeText}/>
+      <textarea ref={textarea} value={store.state.profile.newPostText} placeholder="Enter New Post" onChange={changeText}/>
       <br />
       <button onClick={addPostToBLL}>Add post</button>
-      <button onClick={clearTextarea}>Clear all</button>
+      <button onClick={store.clearTextarea}>Clear all</button>
       <h3>My posts</h3>
       <h3>New posts</h3>
       <div className={classes.posts}>{arrayPosts}</div>

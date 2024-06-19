@@ -6,7 +6,7 @@ import Friends from "../Friends/Friends";
 const setActive = ({ isActive }) =>
   isActive ? classes.itemLinkActive : classes.itemLink;
 
-const Navbar = ({allData}) => {
+const Navbar = ({store}) => {
   return (
     <nav className={classes.nav}>
       <div>
@@ -38,7 +38,7 @@ const Navbar = ({allData}) => {
           Settings
         </NavLink>
       </div>
-      <Friends allData={allData}/>
+      <Friends store={store}/>
 
     </nav>
   );
