@@ -1,5 +1,5 @@
 let rerenderEntireTree = () => {
-  console.log"state changed");
+  console.log("state changed");
 };
 
 export const subscriber = observer => {
